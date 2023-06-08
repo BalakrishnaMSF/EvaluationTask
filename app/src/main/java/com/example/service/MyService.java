@@ -9,7 +9,7 @@ import android.provider.Settings;
 import androidx.annotation.Nullable;
 
 public class MyService extends Service {
-    MediaPlayer myPlayer;
+    private MediaPlayer myPlayer;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -25,15 +25,16 @@ public class MyService extends Service {
 
         myPlayer.start();
 
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
 
+        super.onDestroy();
+
         myPlayer.stop();
 
-        super.onDestroy();
     }
 
 }
